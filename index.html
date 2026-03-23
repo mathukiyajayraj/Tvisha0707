@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday My kuchupuchu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #1a1a1a, #000000); /* 🖤 Black Theme */
+      color: black;
+    }
+
+    .page {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: all 0.8s ease;
+    }
+
+    .active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 38px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 15px;
+      margin: 10px;
+    }
+
+    /* Typing */
+    #typing {
+      border-right: 3px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Couple Name Glow */
+    .names {
+      font-size: 30px;
+      margin-top: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px white; }
+      to { text-shadow: 0 0 25px #ff4d6d; }
+    }
+
+    /* Hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🎵 Music -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+  <h1 id="typing"></h1>
+  <div class="names"> my Tvisha💖 </div>
+  <p>You are my special person 💖</p>
+  <button onclick="nextPage(2)">Start 🎁</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+  <h1>💕 Happy Birthday 💕</h1>
+  <p>May your life be full of love 💕
+    and always smile🫶
+  </p>
+  <button onclick="nextPage(3)">Next 💖</button>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="page">
+  <h1>Our Memories 📸🫶</h1>
+  <img src="">
+  <img src="">
+  <img src="">
+  <button onclick="nextPage(4)">Final 💌🫶</button>
+</div>
+
+<!-- Page 4 -->
+<div id="page4" class="page">
+  <h1>My solumante💕</h1>
+  <p>You are my everything ❤️</p>
+  <h2>I Love You Forever 💖</h2>
+  <h2>💖hu tane hamesha khush jova magu chu atle vala dikuda tu kayam khsuh re 
+     tane bhagavn aakha duniya ni khushi ape ane tane koi divas dukh na male🫶🫶
+     dika tane rovu ave to mane pan rovu ave ane tu gusse tahto mane pan gusso ave che 
+     tane dukh thay to mane dukh thay ane tu khsuh thato hu pan khush thai jav chu 💖
+     bhale atre tara birthday par hu nathi pan maru dil to chene tvisha tari sathe 💖🫶
+     pan ek divas avse te apde taro birthday hare hare manvsu🫶
+    hu to ej prathan karu chu tu hamesha khush💕 ane mari re 💖 only mine okay💕 only jayraj ni bija kli ni nai 🫶
+    ane jai ne to batav kach kach kari nakhis 🔪🔪
+    bs aavi rite atre smile karesne aa vachine evi rite smile karti reje hone mara vala dikuda🫶💕
+    tu smile karti sari lages💕 udasi tara modha par sari na lage ane udasi avse to hu chu ne 💖💕</h2>
+</div>
+
+<script>
+  function nextPage(pageNumber) {
+    let pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + pageNumber).classList.add('active');
+
+    if(pageNumber === 4){
+      startFireworks();
+    }
+  }
+
+  // Typing Effect
+  const text = "Happy Birthday My🙈";
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 80);
+    }
+  }
+  typing();
+
+  // Hearts
+  function createHeart() {
+    const h = document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML = "💖";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.fontSize = (Math.random()*20+10)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+  setInterval(createHeart,300);
+
+  // Fireworks
+  function startFireworks(){
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function createFirework() {
+      for(let i=0;i<50;i++){
+        particles.push({
+          x: canvas.width/2,
+          y: canvas.height/2,
+          dx: (Math.random()-0.5)*6,
+          dy: (Math.random()-0.5)*6,
+          life: 100
+        });
+      }
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+        ctx.fillStyle = "#ff4d6d";
+        ctx.fillRect(p.x,p.y,2,2);
+      });
+      particles = particles.filter(p=>p.life>0);
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(createFirework,800);
+    animate();
+  }
+</script>
+
+</body>
+</html>
